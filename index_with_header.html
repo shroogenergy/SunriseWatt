@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SunriseWatt Multi-Tool</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .header-image {
+      width: 100%;
+      height: auto;
+    }
+    .container {
+      max-width: 750px;
+      margin: auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      margin-top: -30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      text-align: center;
+      color: #f7941e;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      color: #f7941e;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 8px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #f7941e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e67e22;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <img src="header.png" alt="Solar Efficiency AI Model" class="header-image"/>
+  <div class="container">
+    <h1><i class="fas fa-sun"></i> SunriseWatt Multi-Tool</h1>
+    <p class="subtitle">Powered by Lumina Terra | Created by Shroog</p>
+
+    <div class="section">
+      <h2><i class="fas fa-solar-panel"></i> Efficiency Calculator</h2>
+      <label for="eff">Panel Efficiency (%):</label>
+      <input type="number" id="eff" placeholder="e.g. 18">
+      <label for="area">Area (m²):</label>
+      <input type="number" id="area" placeholder="e.g. 1.5">
+      <button onclick="calculateEfficiency()">Calculate</button>
+      <p id="effResult"></p>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-bolt"></i> Energy Output Estimator</h2>
+      <label for="irradiance">Solar Irradiance (W/m²):</label>
+      <input type="number" id="irradiance" placeholder="e.g. 1000">
+      <label for="area2">Area (m²):</label>
+      <input type="number" id="area2" placeholder="e.g. 1.5">
+      <label for="eff2">Efficiency (%):</label>
+      <input type="number" id="eff2" placeholder="e.g. 18">
+      <button onclick="estimateOutput()">Estimate</button>
+      <p id="outputResult"></p>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-coins"></i> Savings Estimator (Soon)</h2>
+      <p>This tool will help you estimate how much money you can save from solar installation.</p>
+    </div>
+
+    <div class="footer">
+      © 2025 ShroogEnergy — All rights reserved
+    </div>
+  </div>
+
+  <script>
+    function calculateEfficiency() {
+      const eff = parseFloat(document.getElementById('eff').value) / 100;
+      const area = parseFloat(document.getElementById('area').value);
+      if (isNaN(eff) || isNaN(area)) return;
+      const result = eff * area;
+      document.getElementById('effResult').innerText = "Effective Area: " + result.toFixed(2) + " m²";
+    }
+
+    function estimateOutput() {
+      const irradiance = parseFloat(document.getElementById('irradiance').value);
+      const area = parseFloat(document.getElementById('area2').value);
+      const eff = parseFloat(document.getElementById('eff2').value) / 100;
+      if (isNaN(irradiance) || isNaN(area) || isNaN(eff)) return;
+      const result = irradiance * area * eff;
+      document.getElementById('outputResult').innerText = "Estimated Output: " + result.toFixed(2) + " W";
+    }
+  </script>
+</body>
+</html>
